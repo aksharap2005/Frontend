@@ -1,0 +1,40 @@
+package com.example.costcompass.network
+
+import retrofit2.Call
+import retrofit2.http.GET
+import retrofit2.http.Query
+
+interface ApiService {
+
+    @GET("get_flights")
+    fun getFlights(
+        @Query("origin") origin: String,
+        @Query("destination") destination: String,
+        @Query("departureDate") departureDate: String,
+        @Query("returnDate") returnDate: String
+    ): Call<FlightResponse>
+
+    @GET("get_hotels")
+    fun getHotels(
+        @Query("id") locationId: String,
+        @Query("checkinDate") checkinDate: String,
+        @Query("checkoutDate") checkoutDate: String
+    ): Call<HotelResponse>
+
+    @GET("get_tourist_locations")
+    fun getTouristLocations(
+        @Query("place") place: String
+    ): Call<TouristPlaceResponse>
+
+    @GET("get_travel_details")
+    fun getTravelDetails(
+        @Query("origin") origin: String,
+        @Query("destination") destination: String,
+        @Query("departureDate") departureDate: String,
+        @Query("returnDate") returnDate: String,
+        @Query("locationId") locationId: String,
+        @Query("checkinDate") checkinDate: String,
+        @Query("checkoutDate") checkoutDate: String,
+        @Query("userBudget") userBudget: Float
+    ): Call<BudgetResponse>
+}
